@@ -6,7 +6,6 @@
 //  Copyright (c) 2013 Vladimir Smirnov. All rights reserved.
 //
 
-
 #import "RoutesController.h"
 #import "MapController.h"
 
@@ -20,28 +19,15 @@
     NSArray * routesKeys;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    
+    // parse routes list from plist
     NSString *routesListPath = [[NSBundle mainBundle] pathForResource:@"Routes" ofType:@"plist"];
     routesList = [NSDictionary dictionaryWithContentsOfFile:routesListPath];
     routesKeys = [[routesList allKeys] sortedArrayUsingSelector: @selector(caseInsensitiveCompare:)];
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
-#pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -66,8 +52,6 @@
         
     return cell;
 }
-
-#pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

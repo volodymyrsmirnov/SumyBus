@@ -11,12 +11,6 @@
 
 @interface MapController : UIViewController <GMSMapViewDelegate>
 
-- (void)showResponseError;
-
-- (void) loadRoutes;
-- (void) loadStops;
-- (void) loadCars:(NSTimer *)timer;
-
 - (id)initWithRouteId:(NSInteger)crouteId routeName:(NSString *)crouteName;
 
 @end

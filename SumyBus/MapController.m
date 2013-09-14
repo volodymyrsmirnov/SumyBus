@@ -8,8 +8,8 @@
 
 #include <math.h>
 
-#import "MBProgressHUD.h"
 #import "MapController.h"
+#import "MBProgressHUD.h"
 #import "AFNetworking.h"
 #import <GoogleMaps/GoogleMaps.h>
 
@@ -17,24 +17,26 @@
 
 @end
 
-@implementation MapController {
-    GMSMapView *mapView;
-    NSString *routeName;
+@implementation MapController
+{
+    GMSMapView * mapView;
+    NSString * routeName;
     NSInteger routeId;
     
     NSInteger internalRouteId;
     
-    MBProgressHUD *progressHUD;
+    MBProgressHUD * progressHUD;
     
-    UIImage *stopMarkerIcon;
-    UIImage *carMarkerIcon;
+    UIImage * stopMarkerIcon;
+    UIImage * carMarkerIcon;
     
     bool loadingCars;
-    NSTimer *carsTimer;
+    NSTimer * carsTimer;
     
     NSMutableDictionary * routeCars;
 }
 
+// initialize map controller with route number
 - (id)initWithRouteId:(NSInteger)crouteId routeName:(NSString *)crouteName
 {
     self = [super initWithNibName:nil bundle:nil];
@@ -45,17 +47,13 @@
     return self;
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    return self;
-}
-
+// pop to parent view on aler box OK button clicked
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [[self navigationController] popViewControllerAnimated:YES];
 }
 
+// show response error
 - (void)showResponseError
 {
     [progressHUD hide:YES];
@@ -68,9 +66,9 @@
     [alert show];
 }
 
+// load route path json
 - (void) loadRoutes
 {
-    
     GMSMutablePath *routeToPath = [GMSMutablePath path];
     GMSMutablePath *routeFromPath = [GMSMutablePath path];
 
@@ -97,30 +95,33 @@
             [self showResponseError];
         } else {
             for (NSDictionary * routePath in loadedRoutes) {
-                CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([[routePath objectForKey:@"lng"] doubleValue],
-                                                                          [[routePath objectForKey:@"lat"] doubleValue]
-                                                                          );
+                CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([[routePath objectForKey:@"lng"] doubleValue], [[routePath objectForKey:@"lat"] doubleValue]);
                 
+                // add route step coordinate to the route path
                 if( [(NSString *)[routePath objectForKey:@"direction"] isEqualToString:@"t"]) {
                     [routeToPath addCoordinate:coord];
                 } else {
                     [routeFromPath addCoordinate:coord];
                 }
                 
+                // calculate route camera bounds
                 routeBounds = [routeBounds includingCoordinate:coord];
             }
         }
         
+        // draw to route
         GMSPolyline * routeToPolyline = [GMSPolyline polylineWithPath:routeToPath];
         [routeToPolyline setStrokeColor:[UIColor colorWithRed:255 green:0 blue:0 alpha:100]];
         [routeToPolyline setStrokeWidth:5.0f];
         [routeToPolyline setMap:mapView];
         
+        // draw from route
         GMSPolyline * routeFromPolyline = [GMSPolyline polylineWithPath:routeFromPath];
         [routeFromPolyline setStrokeColor:[UIColor colorWithRed:255 green:0 blue:0 alpha:100]];
         [routeFromPolyline setStrokeWidth:5.0f];
         [routeFromPolyline setMap:mapView];
         
+        // center camera position
         [mapView animateWithCameraUpdate:[GMSCameraUpdate fitBounds:routeBounds withPadding:10.0f]];
         
         [self loadStops];
@@ -133,6 +134,7 @@
     [routesListOperation start];
 }
 
+// load bus stops on the route
 - (void) loadStops
 {
     progressHUD.detailsLabelText = NSLocalizedString(@"Route Stops", nil);
@@ -156,10 +158,9 @@
             [self showResponseError];
         } else {
             for (NSDictionary * routeStop in loadedRoutes) {
-                CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([[routeStop objectForKey:@"lng"] doubleValue],
-                                                                          [[routeStop objectForKey:@"lat"] doubleValue]
-                                                                          );
+                CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([[routeStop objectForKey:@"lng"] doubleValue], [[routeStop objectForKey:@"lat"] doubleValue]);
 
+                // draw stop marker for the bus stop with its name
                 GMSMarker * stopMarker = [GMSMarker markerWithPosition:coord];
                 [stopMarker setIcon:stopMarkerIcon];
                 [stopMarker setTitle:[routeStop objectForKey:@"name"]];
@@ -168,9 +169,10 @@
             }
         }
         
-        progressHUD.detailsLabelText = NSLocalizedString(@"Route Buses", nil);
-        
+        // first load for busses
         [self loadCars:nil];
+        
+        // set timer for executing events
         carsTimer =  [NSTimer scheduledTimerWithTimeInterval:10.0 target:self selector:@selector(loadCars:) userInfo:nil repeats:YES];
                                                 
         
@@ -182,8 +184,11 @@
     [routesStopsOperation start];
 }
 
+// load buses on routes
 - (void) loadCars:(NSTimer *)timer
 {
+    progressHUD.detailsLabelText = NSLocalizedString(@"Route Buses", nil);
+    
     if (loadingCars == NO) {
         loadingCars = YES;
         
@@ -213,6 +218,7 @@
                     
                     [foundCarIds addObject:[NSNumber numberWithInteger:carID]];
                     
+                    // skip invalid cars
                     if (
                             ([(NSString *)[routeCar objectForKey:@"inzone" ] isEqualToString:@"f"]) ||
                             ([(NSString *)[routeCar objectForKey:@"color" ] isEqualToString:@"#555555"]) ||
@@ -225,12 +231,11 @@
                         continue;
                     }
                     
-                    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([[routeCar objectForKey:@"X"] doubleValue],
-                                                                              [[routeCar objectForKey:@"Y"] doubleValue]
-                                                                             );
+                    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([[routeCar objectForKey:@"X"] doubleValue], [[routeCar objectForKey:@"Y"] doubleValue]);
                     
                     GMSGroundOverlay * carMarker;
                     
+                    // draw new or update old car marker
                     if ([routeCars objectForKey:[NSNumber numberWithInteger:carID]] == nil) {
                         carMarker = [GMSGroundOverlay groundOverlayWithPosition:coord icon:carMarkerIcon zoomLevel:[[mapView camera] zoom]];
                         [carMarker setZIndex:carID];
@@ -249,17 +254,21 @@
                     double carPLat = [[routeCar objectForKey:@"pX"] doubleValue];
                     double carPLng = [[routeCar objectForKey:@"pY"] doubleValue];
                     
+                    // calculate and set icon bearing
                     double carAngle = 90 - (atan2(carLat - carPLat, carLng - carPLng) / M_PI) * 180;
+                    
                     [carMarker setBearing:carAngle];
                 }
                 
+                // remove old cars from route
                 for (NSNumber * prevCarID in routeCars) {
                     if ([foundCarIds indexOfObject:prevCarID] == NSNotFound) {
+                        GMSGroundOverlay * carMarker = [routeCars objectForKey:prevCarID];
+                        [carMarker setMap:nil];
+                        
                         [routeCars removeObjectForKey:prevCarID];
                     }
                 }
-                
-                
             }
             
             [progressHUD hide:YES];
@@ -285,6 +294,7 @@
     stopMarkerIcon = [UIImage imageNamed:@"stop_icon"];
     carMarkerIcon = [UIImage imageNamed:@"bus_icon"];
 	
+    // init Google Maps view
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:50.91 longitude:34.800 zoom:12];
     mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
     [mapView setDelegate:self];
@@ -305,9 +315,11 @@
     NSURL *routeInfoURL = [NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://sumy.gps-tracker.com.ua/mash.php?act=marw&id=%ld", (long)routeId]];
     NSURLRequest *routeInfoRequest = [NSURLRequest requestWithURL:routeInfoURL];
     
-    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
+    // allow accepting text/html for JSON type and enable network indicator
     [AFJSONRequestOperation addAcceptableContentTypes:[NSSet setWithObjects:@"text/html", nil]];
+    [[AFNetworkActivityIndicatorManager sharedManager] setEnabled:YES];
     
+    // get route information
     AFJSONRequestOperation *routeInfoOperation = [AFJSONRequestOperation JSONRequestOperationWithRequest:routeInfoRequest success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {        
         if ([(NSArray *) JSON count] == 1) {
             
@@ -336,14 +348,4 @@
     
     [routeInfoOperation start];
 }
-
-- (void) viewWillDisappear:(BOOL)animated {
-    [carsTimer invalidate];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-}
-
 @end
