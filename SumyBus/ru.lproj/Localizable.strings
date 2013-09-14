@@ -1,0 +1,24 @@
+/* No comment provided by engineer. */
+"Empty server response" = "Пустой ответ сервера";
+
+/* No comment provided by engineer. */
+"Loading" = "Загружаю";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* No comment provided by engineer. */
+"Route Buses" = "Маршрутки";
+
+/* No comment provided by engineer. */
+"Route Info" = "Информацию";
+
+/* No comment provided by engineer. */
+"Route Path" = "Маршрут";
+
+/* No comment provided by engineer. */
+"Route Stops" = "Остановки";
+
+/* No comment provided by engineer. */
+"This route does not seem to have GPS tracking enabled yet." = "Возможно, этот маршрут не отслеживается либо же у вас отсутствует активное подключение к интернету.";
+
