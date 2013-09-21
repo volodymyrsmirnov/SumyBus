@@ -19,9 +19,7 @@
 
 @implementation MapController
 {
-    GMSMapView * mapView;
-    NSString * routeName;
-    NSInteger routeId;
+    GMSMapView *mapView;
     
     NSInteger internalRouteId;
     
@@ -36,18 +34,10 @@
     NSMutableDictionary * routeCars;
 }
 
-// initialize map controller with route number
-- (id)initWithRouteId:(NSInteger)crouteId routeName:(NSString *)crouteName
-{
-    self = [super initWithNibName:nil bundle:nil];
-    
-    routeName = crouteName;
-    routeId = crouteId;
-    
-    return self;
-}
+@synthesize routeId;
+@synthesize routeName;
 
-// pop to parent view on aler box OK button clicked
+// pop to parent view on alert box OK button clicked
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     [[self navigationController] popViewControllerAnimated:YES];
@@ -76,7 +66,7 @@
     
     NSURL *routesListURL = [NSURL URLWithString:[[NSString alloc]
                                                  initWithFormat:@"http://sumy.gps-tracker.com.ua/mash.php?act=path&id=%ld&mar=%ld",
-                                                 (long)routeId,
+                                                 (long)[routeId integerValue],
                                                  (long)internalRouteId
                                                  ]];
     
@@ -141,7 +131,7 @@
     
     NSURL *routesStopsURL = [NSURL URLWithString:[[NSString alloc]
                                                  initWithFormat:@"http://sumy.gps-tracker.com.ua/mash.php?act=stops&id=%ld&mar=%ld",
-                                                 (long)routeId,
+                                                 (long)[routeId integerValue],
                                                  (long)internalRouteId
                                                  ]];
     
@@ -164,7 +154,7 @@
                 GMSMarker * stopMarker = [GMSMarker markerWithPosition:coord];
                 [stopMarker setIcon:stopMarkerIcon];
                 [stopMarker setTitle:[routeStop objectForKey:@"name"]];
-                [stopMarker setZIndex:1];
+                [stopMarker setZIndex:2];
                 [stopMarker setMap:mapView];
             }
         }
@@ -194,7 +184,7 @@
         
         NSURL *routeCarsURL = [NSURL URLWithString:[[NSString alloc]
                                                      initWithFormat:@"http://sumy.gps-tracker.com.ua/mash.php?act=cars&id=%ld",
-                                                     (long)routeId
+                                                     (long)[routeId integerValue]
                                                      ]];
         
         NSURLRequest *routeCarsRequest = [NSURLRequest requestWithURL:routeCarsURL];
@@ -233,15 +223,16 @@
                     
                     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake([[routeCar objectForKey:@"X"] doubleValue], [[routeCar objectForKey:@"Y"] doubleValue]);
                     
-                    GMSGroundOverlay * carMarker;
+                    GMSMarker * carMarker;
                     
                     // draw new or update old car marker
                     if ([routeCars objectForKey:[NSNumber numberWithInteger:carID]] == nil) {
-                        carMarker = [GMSGroundOverlay groundOverlayWithPosition:coord icon:carMarkerIcon zoomLevel:[[mapView camera] zoom]];
-                        [carMarker setZIndex:carID];
+                        carMarker = [GMSMarker markerWithPosition:coord];
+                        
+                        [carMarker setIcon:carMarkerIcon];
+                        [carMarker setZIndex:1];
                         [carMarker setMap:mapView];
-                        [carMarker setTappable:YES];
-                        [carMarker setTitle:(NSString *)[routeCar objectForKey:@"CarName"]];
+                        [carMarker setTappable:NO];
                         
                         [routeCars setObject:carMarker forKey:[NSNumber numberWithInteger:carID]];
                     } else {
@@ -257,7 +248,7 @@
                     // calculate and set icon bearing
                     double carAngle = 90 - (atan2(carLat - carPLat, carLng - carPLng) / M_PI) * 180;
                     
-                    [carMarker setBearing:carAngle];
+                    [[carMarker layer] setRotation:carAngle];
                 }
                 
                 // remove old cars from route
@@ -265,7 +256,6 @@
                     if ([foundCarIds indexOfObject:prevCarID] == NSNotFound) {
                         GMSGroundOverlay * carMarker = [routeCars objectForKey:prevCarID];
                         [carMarker setMap:nil];
-                        
                         [routeCars removeObjectForKey:prevCarID];
                     }
                 }
@@ -280,6 +270,12 @@
         
         [routeCarsOperation start];
     }
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [carsTimer invalidate];
+    carsTimer = nil;
 }
 
 - (void)viewDidLoad
@@ -297,7 +293,6 @@
     // init Google Maps view
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:50.91 longitude:34.800 zoom:12];
     mapView = [GMSMapView mapWithFrame:CGRectZero camera:camera];
-    [mapView setDelegate:self];
     
     [mapView setMyLocationEnabled:TRUE];
     
@@ -305,14 +300,13 @@
     [[mapView settings] setRotateGestures:FALSE];
     [[mapView settings] setTiltGestures:FALSE];
     
-    mapView.accessibilityElementsHidden = NO;
     [self setView:mapView];
     
     progressHUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     progressHUD.labelText = NSLocalizedString(@"Loading", nil);
     progressHUD.detailsLabelText = NSLocalizedString(@"Route Info", nil);
         
-    NSURL *routeInfoURL = [NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://sumy.gps-tracker.com.ua/mash.php?act=marw&id=%ld", (long)routeId]];
+    NSURL *routeInfoURL = [NSURL URLWithString:[[NSString alloc] initWithFormat:@"http://sumy.gps-tracker.com.ua/mash.php?act=marw&id=%ld", (long)[routeId integerValue]]];
     NSURLRequest *routeInfoRequest = [NSURLRequest requestWithURL:routeInfoURL];
     
     // allow accepting text/html for JSON type and enable network indicator

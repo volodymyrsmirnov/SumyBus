@@ -9,8 +9,9 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import <UIKit/UIKit.h>
 
-@interface MapController : UIViewController <GMSMapViewDelegate>
+@interface MapController : UIViewController
 
-- (id)initWithRouteId:(NSInteger)crouteId routeName:(NSString *)crouteName;
+@property (nonatomic, retain) NSString * routeName;
+@property (nonatomic, retain) NSNumber * routeId;
 
 @end

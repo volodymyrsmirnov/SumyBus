@@ -392,11 +392,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D90B2617604740878BDCD0A2 /* Pods-Sumy Bus.xcconfig */;
 			buildSettings = {
-				ARCHS = armv7;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Vladimir Smirnov (N57Y7CERDR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SumyBus/Sumy Bus-Prefix.pch";
 				INFOPLIST_FILE = "SumyBus/Sumy Bus-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "Sumy Bus";
 				PROVISIONING_PROFILE = "BFB6D2A6-D1A0-4709-9368-ED030F5B9A6C";
 				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -408,11 +409,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D90B2617604740878BDCD0A2 /* Pods-Sumy Bus.xcconfig */;
 			buildSettings = {
-				ARCHS = armv7;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Vladimir Smirnov (N57Y7CERDR)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SumyBus/Sumy Bus-Prefix.pch";
 				INFOPLIST_FILE = "SumyBus/Sumy Bus-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "Sumy Bus";
 				PROVISIONING_PROFILE = "BFB6D2A6-D1A0-4709-9368-ED030F5B9A6C";
 				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";

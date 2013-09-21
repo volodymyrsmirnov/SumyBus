@@ -56,8 +56,8 @@
             <objects>
                 <viewController storyboardIdentifier="Map" id="ool-9u-pf3" customClass="MapController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Vv0-xm-c2H"/>
-                        <viewControllerLayoutGuide type="bottom" id="5dT-p8-KU6"/>
+                        <viewControllerLayoutGuide type="top" id="yTY-QU-xju"/>
+                        <viewControllerLayoutGuide type="bottom" id="lyL-zn-UtE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QAB-uK-ZqY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>

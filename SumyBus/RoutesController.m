@@ -58,9 +58,11 @@
     NSString * routeKey = [routesKeys objectAtIndex:[indexPath item]];
     NSDictionary * routeDetails = [routesList objectForKey:routeKey];
     
-    NSInteger routeID = [[routeDetails objectForKey:@"id"] integerValue];
+    MapController *routeView = [[self storyboard] instantiateViewControllerWithIdentifier:@"Map"];
     
-    MapController *routeView = [[MapController alloc] initWithRouteId:routeID routeName:[routeDetails objectForKey:@"name"]];
+    [routeView setRouteName:[routeDetails objectForKey:@"name"]];
+    [routeView setRouteId:[NSNumber numberWithInteger:[[routeDetails objectForKey:@"id"] integerValue]]];
+    
     [[self navigationController] pushViewController:routeView animated:YES];
 }
 
