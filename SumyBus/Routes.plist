@@ -2,6 +2,34 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>17A</key>
+	<dict>
+		<key>id</key>
+		<integer>16</integer>
+		<key>name</key>
+		<string>Прокоф’єва - Хіммістечко</string>
+	</dict>
+	<key>24</key>
+	<dict>
+		<key>id</key>
+		<integer>36</integer>
+		<key>name</key>
+		<string> Баранівка - Баранівка</string>
+	</dict>
+	<key>57</key>
+	<dict>
+		<key>id</key>
+		<integer>35</integer>
+		<key>name</key>
+		<string>Роменська - Баранівка</string>
+	</dict>
+	<key>51</key>
+	<dict>
+		<key>id</key>
+		<integer>34</integer>
+		<key>name</key>
+		<string>Піщане - Прокоф’єва</string>
+	</dict>
 	<key>01</key>
 	<dict>
 		<key>name</key>
