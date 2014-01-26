@@ -22,3 +22,7 @@
 /* No comment provided by engineer. */
 "This route does not seem to have GPS tracking enabled yet." = "Можливо, що цей маршрут не відстежується або ви не маєте активного з'єднання с інтернетом.";
 
+"Refresh" = "Оновити";
+"Release to refresh" = "Відпусти для оновлення";
+"Pull to refresh"= "Потягни вниз для оновлення";
+"Loading" = "Оновлюю";

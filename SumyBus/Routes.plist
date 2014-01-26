@@ -14,7 +14,7 @@
 		<key>id</key>
 		<integer>36</integer>
 		<key>name</key>
-		<string> Баранівка - Баранівка</string>
+		<string>Баранівка - Баранівка</string>
 	</dict>
 	<key>57</key>
 	<dict>
@@ -141,13 +141,6 @@
 		<string>Ковпака - Баранівка</string>
 		<key>id</key>
 		<integer>15</integer>
-	</dict>
-	<key>17</key>
-	<dict>
-		<key>name</key>
-		<string>Прокоф’єва - Хіммістечко</string>
-		<key>id</key>
-		<integer>16</integer>
 	</dict>
 	<key>18</key>
 	<dict>

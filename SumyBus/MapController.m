@@ -283,6 +283,11 @@
 {
     [super viewDidLoad];
     
+    if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
+    {
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    
     [[self navigationItem] setTitle:routeName];
     
     routeCars = [[NSMutableDictionary alloc] init];

@@ -6,5 +6,6 @@ target "Sumy Bus" do
 	pod 'AFNetworking', '~> 1.3.2'
 	pod 'Appirater', '~> 2.0.2'
 	pod 'YandexMobileMetrica', '~> 1.0.1'
+    pod 'SVPullToRefresh', '~> 0.4.1'
 end
 

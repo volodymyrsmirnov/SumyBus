@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B2335BDD1895257A00E87DED /* MainUI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2335BDF1895257A00E87DED /* MainUI.storyboard */; };
 		B23CF21217E31DE000915B8C /* iphone_icon@2xp.png in Resources */ = {isa = PBXBuildFile; fileRef = B23CF21117E31DE000915B8C /* iphone_icon@2xp.png */; };
 		B23CF21417E31EA400915B8C /* iphone_icon_b.png in Resources */ = {isa = PBXBuildFile; fileRef = B23CF21317E31EA400915B8C /* iphone_icon_b.png */; };
 		B23CF21617E31EE800915B8C /* iphone_icon_m.png in Resources */ = {isa = PBXBuildFile; fileRef = B23CF21517E31EE800915B8C /* iphone_icon_m.png */; };
@@ -24,7 +25,6 @@
 		B265C34017E1D0D100497C00 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B265C33F17E1D0D100497C00 /* Default-568h@2x.png */; };
 		B26B4CF817E1D4CA00B0C6DE /* Routes.plist in Resources */ = {isa = PBXBuildFile; fileRef = B26B4CF717E1D4CA00B0C6DE /* Routes.plist */; };
 		B26B4D0A17E1DA7000B0C6DE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B26B4D0C17E1DA7000B0C6DE /* Localizable.strings */; };
-		B26B4D1017E1DECD00B0C6DE /* MainUI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B26B4D1217E1DECD00B0C6DE /* MainUI.storyboard */; };
 		B284367317E1D22400490795 /* MapController.m in Sources */ = {isa = PBXBuildFile; fileRef = B284366D17E1D22400490795 /* MapController.m */; };
 		B284367417E1D22400490795 /* RoutesController.m in Sources */ = {isa = PBXBuildFile; fileRef = B284366F17E1D22400490795 /* RoutesController.m */; };
 		B284367C17E1D25100490795 /* bus_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B284367717E1D25100490795 /* bus_icon.png */; };
@@ -38,9 +38,9 @@
 		39062590B45E4F74B9A99B34 /* libPods-Sumy Bus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Sumy Bus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B22A4E2817E3A81B001E6BEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B22A4E2917E3A81B001E6BEC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		B22A4E2A17E3A81B001E6BEC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainUI.storyboard; sourceTree = "<group>"; };
-		B22A4E2D17E3A87D001E6BEC /* uk */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = uk; path = uk.lproj/MainUI.storyboard; sourceTree = "<group>"; };
-		B22A4E2E17E3A87E001E6BEC /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ru; path = ru.lproj/MainUI.storyboard; sourceTree = "<group>"; };
+		B2335BDE1895257A00E87DED /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/MainUI.storyboard; sourceTree = "<group>"; };
+		B2335BE01895257F00E87DED /* uk */ = {isa = PBXFileReference; lastKnownFileType = file; name = uk; path = uk.lproj/MainUI.storyboard; sourceTree = "<group>"; };
+		B2335BE11895258000E87DED /* ru */ = {isa = PBXFileReference; lastKnownFileType = file; name = ru; path = ru.lproj/MainUI.storyboard; sourceTree = "<group>"; };
 		B23CF21117E31DE000915B8C /* iphone_icon@2xp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone_icon@2xp.png"; sourceTree = "<group>"; };
 		B23CF21317E31EA400915B8C /* iphone_icon_b.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone_icon_b.png; sourceTree = "<group>"; };
 		B23CF21517E31EE800915B8C /* iphone_icon_m.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone_icon_m.png; sourceTree = "<group>"; };
@@ -129,7 +129,6 @@
 				B265C33817E1D0D100497C00 /* AppDelegate.h */,
 				B265C33917E1D0D100497C00 /* AppDelegate.m */,
 				B265C33017E1D0D100497C00 /* Supporting Files */,
-				B26B4D1217E1DECD00B0C6DE /* MainUI.storyboard */,
 			);
 			path = SumyBus;
 			sourceTree = "<group>";
@@ -137,6 +136,7 @@
 		B265C33017E1D0D100497C00 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B2335BDF1895257A00E87DED /* MainUI.storyboard */,
 				B284367617E1D22F00490795 /* Images */,
 				B26B4D0C17E1DA7000B0C6DE /* Localizable.strings */,
 				B26B4CF717E1D4CA00B0C6DE /* Routes.plist */,
@@ -201,6 +201,11 @@
 				TargetAttributes = {
 					B265C32517E1D0D100497C00 = {
 						DevelopmentTeam = N57Y7CERDR;
+						SystemCapabilities = {
+							com.apple.iOS = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -232,6 +237,7 @@
 				B265C33417E1D0D100497C00 /* InfoPlist.strings in Resources */,
 				B265C33C17E1D0D100497C00 /* Default.png in Resources */,
 				B265C33E17E1D0D100497C00 /* Default@2x.png in Resources */,
+				B2335BDD1895257A00E87DED /* MainUI.storyboard in Resources */,
 				B265C34017E1D0D100497C00 /* Default-568h@2x.png in Resources */,
 				B284367C17E1D25100490795 /* bus_icon.png in Resources */,
 				B23CF21417E31EA400915B8C /* iphone_icon_b.png in Resources */,
@@ -245,7 +251,6 @@
 				B23D514417E45B470093FBBB /* iphone_icon@2x.png in Resources */,
 				B23D514317E45B470093FBBB /* iphone_icon.png in Resources */,
 				B26B4D0A17E1DA7000B0C6DE /* Localizable.strings in Resources */,
-				B26B4D1017E1DECD00B0C6DE /* MainUI.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +304,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		B2335BDF1895257A00E87DED /* MainUI.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B2335BDE1895257A00E87DED /* en */,
+				B2335BE01895257F00E87DED /* uk */,
+				B2335BE11895258000E87DED /* ru */,
+			);
+			name = MainUI.storyboard;
+			sourceTree = "<group>";
+		};
 		B265C33217E1D0D100497C00 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -317,16 +332,6 @@
 				B22A4E2817E3A81B001E6BEC /* en */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		B26B4D1217E1DECD00B0C6DE /* MainUI.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B22A4E2A17E3A81B001E6BEC /* en */,
-				B22A4E2D17E3A87D001E6BEC /* uk */,
-				B22A4E2E17E3A87E001E6BEC /* ru */,
-			);
-			name = MainUI.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -392,9 +397,9 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D90B2617604740878BDCD0A2 /* Pods-Sumy Bus.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Vladimir Smirnov (3BEZ9BP7NZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vladimir Smirnov (3BEZ9BP7NZ)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SumyBus/Sumy Bus-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -403,10 +408,11 @@
 					"INCLUDE_LOCAL=1",
 				);
 				INFOPLIST_FILE = "SumyBus/Sumy Bus-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Sumy Bus";
-				PROVISIONING_PROFILE = "";
-				VALID_ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				PROVISIONING_PROFILE = "4A188197-29D2-4900-91C2-A32D59F90FBC";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -415,16 +421,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D90B2617604740878BDCD0A2 /* Pods-Sumy Bus.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ARCHS = "$(ARCHS_STANDARD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Vladimir Smirnov (3BEZ9BP7NZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Vladimir Smirnov (3BEZ9BP7NZ)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "SumyBus/Sumy Bus-Prefix.pch";
 				INFOPLIST_FILE = "SumyBus/Sumy Bus-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "Sumy Bus";
-				PROVISIONING_PROFILE = "";
-				VALID_ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				PROVISIONING_PROFILE = "4A188197-29D2-4900-91C2-A32D59F90FBC";
+				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

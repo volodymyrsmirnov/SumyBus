@@ -22,3 +22,8 @@
 /* No comment provided by engineer. */
 "This route does not seem to have GPS tracking enabled yet." = "This route does not seem to have GPS tracking enabled yet.";
 
+"Refresh" = "Refresh";
+"Release to refresh" = "Release to refresh";
+"Pull to refresh"= "Pull to refresh";
+"Loading" = "Loading";
+
